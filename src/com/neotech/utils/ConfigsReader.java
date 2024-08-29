@@ -11,27 +11,27 @@ public class ConfigsReader {
 	private static Properties prop;
 
 	/**
-	 * This method will read the properties file
+	 * This method reads the properties of a config file
 	 * 
 	 * @param filePath
 	 */
 	public static void readProperties(String filePath) {
 
+		FileInputStream fis;
 		try {
-			FileInputStream fileIS = new FileInputStream(filePath);
+			fis = new FileInputStream(filePath);
 			prop = new Properties();
-			prop.load(fileIS);
-			fileIS.close();
+			prop.load(fis);
 		} catch (FileNotFoundException e) {
-			System.out.println("The file path is wrong!!!");
+			e.printStackTrace();
 		} catch (IOException e) {
-			System.out.println("I couldn't read the file!!!");
+			e.printStackTrace();
 		}
 
 	}
 
 	/**
-	 * This method will return the value for a specified key
+	 * This method returns the value of the provided key in configs file
 	 * 
 	 * @param String key
 	 * @return String value
@@ -39,5 +39,4 @@ public class ConfigsReader {
 	public static String getProperty(String key) {
 		return prop.getProperty(key);
 	}
-
 }
